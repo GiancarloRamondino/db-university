@@ -62,3 +62,58 @@ FROM `db-university`.departments;
 SELECT COUNT(*) 
 FROM `db-university`.teachers
 WHERE phone IS NULL;
+
+Esercizio 1 del 27/05/2025
+
+1. Contare quanti iscritti ci sono stati ogni anno
+
+SELECT
+    YEAR(enrolment_date) AS `year`,  -- Estrai l'anno dalla colonna della data di iscrizione
+    COUNT(*) AS `1000`  -- Conta tutti i record per ogni anno
+FROM
+     `db-university`.students  -- Sostituisci con il nome della tua tabella
+GROUP BY
+    `year`  -- Gruppa i dati per anno
+ORDER BY
+    `year`;  -- Ordinare i risultati per anno 
+
+2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+
+SELECT
+    COUNT(office_address) AS `1000`  
+FROM
+     `db-university`.teachers  
+GROUP BY
+    `office_address`
+ORDER BY `office_address`;
+
+3. Calcolare la media dei voti di ogni appello d'esame
+
+SELECT student_id, AVG(vote) AS media_voti
+FROM `db-university`.exam_student
+GROUP BY student_id;
+
+4. Contare quanti corsi di laurea ci sono per ogni dipartimento
+
+SELECT `db-university`.departments `name`,
+    COUNT(*) AS `1000`
+FROM 
+   `db-university`.courses
+GROUP BY 
+    `db-university`.departments;
+
+Esercizio 2 del 27/05/2025
+
+1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
+2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di
+Neuroscienze
+3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui
+sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e
+nome
+5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
+6. Selezionare tutti i docenti che insegnano nel Dipartimento di
+Matematica (54)
+7. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti
+per ogni esame, stampando anche il voto massimo. Successivamente,
+filtrare i tentativi con voto minimo 18
